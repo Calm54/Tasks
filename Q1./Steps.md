@@ -20,18 +20,25 @@ development of the audio subsystem.
 ```
 # Clone repo A (if not already cloned)
 git clone <repository_A_url>
+
 # Navigate into repository A
 cd repository A
+
 # Move the audio subsystem code to the SharedAudio repository
 git filter-branch --subdirectory-filter <audio_subsystem_directory> -- --all
+
 # Create the SharedAudio repository
 mkdir ../SharedAudio
+
 # Navigate into the SharedAudio repository
 cd ../SharedAudio
+
 # Initialise the new Git Repo
 git init
+
 # Move the audio subsystem code into the SharedAudio Repo
 mv ../repository_A/* .
+
 # Commit the changes
 git add .
 git commit -m 'Moving audio subsystem code from Repo A'
@@ -48,8 +55,10 @@ audio subsystem from the SharedAudio repository during the build process.
 ```
 # Navigate into Repo A
 cd repository A
+
 #Remove the audio subsystem code
 git rm -r <audio_subsystem_directory>
+
 # Update dependencies to use the SharedAudio Repo, if using npm package manager;
 npm install --save <SharedAudio_repository_url>
 ```
@@ -62,8 +71,10 @@ audio subsystem from the SharedAudio repository during the build process.
 ```
 # Clone repository B (if not already cloned)
 git clone <repository_B_url>
+
 # Navigate into repository B
 cd repository_B
+
 # Add the SharedAudio repository as a submodule
 git submodule add <SharedAudio_repository_url> shared_audio
 ```
@@ -79,10 +90,11 @@ retrieve and integrate the audio subsystem during the build process.
 ```
 # Navigate into Repo A
 cd repository_A
+
 # Update build script or Config file, if using script (build.sh)
 echo "command_to_build_audio_subsystem" >> build.sh
 
-# Repeat step for repository B.
+# Repeat same steps for repository B.
 ```
 6.**Versioning and releases:** Establish a versioning strategy for the audio subsystem 
 within the SharedAudio repository using Git tags. This strategy allows you to manage changes made 
@@ -95,8 +107,10 @@ repositories A and B to ensure compatibility and proper integration.
 ```
 # Navigate into the SharedAudio repository
 cd SharedAudio
+
 # Create a new tag for a release version
 git tag <version_number>
+
 # Push the tags to the remote repository
 git push --tags
 ```
