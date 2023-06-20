@@ -1,2 +1,2 @@
 # Tasks
-This Repository contains solutions to given Tasks
+This Repository contains solutions to given Tasks.
