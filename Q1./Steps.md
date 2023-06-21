@@ -101,10 +101,6 @@ git tag <version_number>
 # Push the tags to the remote repository
 git push --tags
 ```
-*RemThe commands for configuring CI/CD pipelines vary depending on the platform and tools 
-you choose.
-ember to define a versioning strategy and update the version number whenever changes are made to the audio subsystem*
-
 7. **Continuous Integration and Deployment (CI/CD):** The setup of CI/CD pipelines depends on the specific tools and platforms you use. Generally, 
 you would configure the CI/CD pipelines for both repository A and repository B to handle 
 building, testing, and deploying the code. These pipelines should include steps to fetch the 
