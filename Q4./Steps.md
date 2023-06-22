@@ -14,20 +14,18 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=address -fno-omit-frame-point
 
 These flags instruct the compiler to enable AddressSanitizer and include frame pointers in the generated code.
 
-4. Configure the project using CMake. You can do this by running the following commands in your terminal:
-
+4. Configure the project using CMake. You can do this by running the following commands in your terminal;
 ```
-bash
+
 mkdir build
 cd build
 cmake ..
 ```
 The above commands create a separate directory for the build artifacts and invoke CMake to configure the project based on the CMakeLists.txt file.
 
-5. Build the project by running the following command:
-
+5. Build the project by running the following command;
 ```
-bash
+
 make
 ```
 CMake will generate the necessary build files based on the CMakeLists.txt instructions, and the compiler will build your project with the AddressSanitizer enabled.
@@ -53,10 +51,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-generate")
 
 These flags instruct the compiler to enable profiling and generate profiling data during the build.
 
-4. Configure the project using CMake by running the following commands in your terminal:
+4. Configure the project using CMake by running the following commands in your terminal;
 
 ```
-bash
+
 mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Profile ..
@@ -65,7 +63,7 @@ The `-DCMAKE_BUILD_TYPE=Profile` option specifies the build type as "Profile," w
 
 5. Build the project by running the following command:
 ```
-bash
+
 make
 ```
 CMake will generate the necessary build files based on the CMakeLists.txt instructions, and the compiler will build your project with profiling enabled.
@@ -82,7 +80,7 @@ This modification enables the use of the collected profiling data during the bui
 
 8. Configure and build the project again using CMake:
 ```
-bash
+
 cd build
 cmake -DCMAKE_BUILD_TYPE=PGO ..
 make
