@@ -2,10 +2,10 @@ To achieve this using GitHub Actions, we need to create a workflow that builds o
 generates the .pdb files, and then uploads them to an Amazon S3 bucket.
 
 We'll need the following resources;
-[x] A github repository and a .github/workflows/omit.yaml workflow file
-[x] An Amazon S3 bucket from AWS
-[x] A new IAM user with AmazonS3Full Access role attached to the S3 bucket (this will generate an Access Key ID & Secret Access Key)
-[x] Set up AWS credentials as secrets in your GitHub repository. Go to your repository's settings and navigate to the "Secrets" section. Add the generated AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY as secrets. Provide the appropriate AWS IAM credentials with permissions to upload files to the S3 bucket.
+1. A github repository and a .github/workflows/omit.yaml workflow file
+2. An Amazon S3 bucket from AWS
+3. A new IAM user with AmazonS3Full Access role attached to the S3 bucket (this will generate an Access Key ID & Secret Access Key)
+4. Set up AWS credentials as secrets in your GitHub repository. Go to your repository's settings and navigate to the "Secrets" section. Add the generated AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY as secrets. Provide the appropriate AWS IAM credentials with permissions to upload files to the S3 bucket.
 
 **Defining the workflow**
 ```yaml
