@@ -1,68 +1,42 @@
-To create a CMake project that processes IDL files and generates C++ files at build time, you 
-can follow these steps:
-1. Create a new directory for your CMake project. Let's call it `IDLProject.`
-2. Inside the `IDLProject` directory, create a subdirectory called `idl`. Place your 
-`Functions.idl` file in this directory.
-3. Create another subdirectory called `src`, which will contain your C++ source files.
-4. In the root of the `IDLProject` directory, create a CMakeLists.txt file. This file defines 
-the build configuration for your project.
-Here's an example of a CMakeLists.txt file:
+ This project will create a target called IDLtoCpp that will generate the C++ file Functions.cpp from the IDL file Functions.idl. The generated C++ file will then be linked to the target main, which will be the executable that is built. The project also includes a custom target called run that will run the executable main.
+
 ```
-cmake
-cmake_minimum_required(VERSION 3.12)
-project(IDLProject)
+cmake_minimum_required(VERSION 3.1)
+project(IDLtoCpp)
+set(CMAKE_CXX_STANDARD 17)
+add_executable(IDLtoCpp IDLtoCpp.cpp)
 
-# Set the path to the prebuilt "IDLtoCpp" executable
-set(IDLTOCPP_EXECUTABLE "<path_to_IDLtoCpp_executable>")
+# The IDL file to process
+set(IDL_FILE Functions.idl)
 
-# Add a custom command to generate C++ files from the IDL file
+# The output C++ file
+set(CPP_FILE Functions.cpp)
+
+# The command to run to generate the C++ file
+set(IDL_TO_CPP_COMMAND "IDLtoCpp")
+
+# Add a custom command to generate the C++ file
 add_custom_command(
-    OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/src/Functions.cpp
-    COMMAND ${IDLTOCPP_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/idl/Functions.idl
-    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/idl/Functions.idl
-    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/src
-    COMMENT "Generating C++ files from IDL"
+  TARGET IDLtoCpp
+  COMMAND ${IDL_TO_CPP_COMMAND} ${IDL_FILE} ${CPP_FILE}
+  DEPENDS ${IDL_FILE}
+  COMMENT "Generating C++ file from IDL file"
 )
 
-# Add the generated C++ file to the project's source files
-set(SOURCES
-    ${CMAKE_CURRENT_BINARY_DIR}/src/Functions.cpp
-)
+# Add the generated C++ file to the target
+target_sources(IDLtoCpp PRIVATE ${CPP_FILE})
 
-# Build the main executable
-add_executable(IDLProject ${SOURCES})
-```
-*Make sure to replace <path_to_IDLtoCpp_executable> with the actual path to the "IDLtoCpp" executable.*
+# Build the project
+add_executable(main main.cpp)
+target_link_libraries(main IDLtoCpp)
 
-5. Save the CMakeLists.txt file.
+# Run the project
+add_custom_target(run COMMAND ./main)
 
-#Install CMake command (if not already installed)
-
-6. Open a terminal, navigate to the "IDLProject" directory, and run the following commands:
-```
+# To build the project, run:
 bash
 mkdir build
 cd build
 cmake ..
 make
 ```
-This will create a "build" directory, generate the build files using CMake, and build the project using the "make" command.
-
-7. After the build completes successfully, you can find the compiled executable in the "build" directory (or wherever your CMake build files are generated).
-
-The CMake project will process the "Functions.idl" file using the "IDLtoCpp" executable and generate a C++ file, which will be compiled and linked into the final executable.
-
-In this example, we define a custom command using add_custom_command. This command 
-invokes the IDLtoCpp executable and specifies the input IDL file and output C++ files. The 
-DEPENDS keyword ensures that the custom command is re-run whenever the IDL file changes.
-The generated C++ files are then added to the MyApp target using add_executable. In this 
-example, we assume a simple main.cpp file exists in the src directory.
-Finally, we set the include directories for the target using target_include_directories to 
-ensure the generated header file is accessible during compilation.
-Note: Replace "path/to/IDLtoCpp" in the CMakeLists.txt file with the actual path to the 
-IDLtoCpp executable on your system.
-With this setup, when you build the project using CMake, the custom command will be 
-executed, generating the C++ files from the IDL. The generated files will be compiled and 
-linked with your main.cpp file, producing the final executable.
-Remember to adjust the paths and filenames according to your project structure and file 
-names.
