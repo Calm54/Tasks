@@ -34,7 +34,7 @@ target_link_libraries(main IDLtoCpp)
 add_custom_target(run COMMAND ./main)
 
 # To build the project, run:
-bash
+```bash
 mkdir build
 cd build
 cmake ..
