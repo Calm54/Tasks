@@ -101,7 +101,7 @@ git tag <version_number>
 # Push the tags to the remote repository
 git push --tags
 ```
-7. **Continuous Integration and Deployment (CI/CD):** The setup of CI/CD pipelines depends on the specific tools and platforms you use. Generally, 
+7. **Continuous Integration and Deployment (CI/CD):** The setup of CI/CD pipelines depends on the specific tools and platforms we're using. Generally, 
 you would configure the CI/CD pipelines for both repository A and repository B to handle 
 building, testing, and deploying the code. These pipelines should include steps to fetch the 
-audio subsystem from the CommonAudioSub repository and integrate it into the projects. Here, we can use CI/CD platforms like Jenkins or GitHub Actions to configure the pipelines. 
+audio subsystem from the CommonAudioSub repository and integrate it into the projects. We can use CI/CD platforms like Jenkins or GitHub Actions to configure the pipelines. 
