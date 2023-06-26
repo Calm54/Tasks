@@ -1,4 +1,4 @@
-To achieve this using GitHub Actions, we need to create a workflow that builds our project, 
+To achieve this using GitHub Actions, we need to create a workflow that builds our project (lets call our file 'omit.yaml'),
 generates the .pdb files, and then uploads them to an Amazon S3 bucket.
 
 We'll need the following resources;
