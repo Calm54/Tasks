@@ -9,7 +9,7 @@ We'll need the following resources;
 
 **Defining the workflow**
 ```yaml
-name: Publish and Upload PDB Files
+name: Build and Upload .pdb Files
 
    on:
      push:
